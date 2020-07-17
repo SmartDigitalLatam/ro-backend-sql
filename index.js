@@ -9,7 +9,7 @@ const CosmosClientInterface = require("@azure/cosmos").CosmosClient;
 const app = express()
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://headspace-portal.azurewebsites.net");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/data-santafe', async (req, res) => {
+app.get('/headspace_dev1', async (req, res) => {
     // Import database node module
   
     // Database and container IDs
@@ -54,7 +54,7 @@ app.get('/data-santafe', async (req, res) => {
        
 
         const queryResponse = await container.items.query(
-            "SELECT * FROM c WHERE c.customer = 'SantaFe'  ",
+            "SELECT * FROM c WHERE c.customer = 'Headspace_Dev1'  ",
             { enableCrossPartitionQuery: true }
             ).toArray();
         //console.log(queryResponse.result);
