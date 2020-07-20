@@ -9,7 +9,7 @@ const CosmosClientInterface = require("@azure/cosmos").CosmosClient;
 const app = express()
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://headspace-portal.azurewebsites.net");
+  res.header("Access-Control-Allow-Origin", "https://ro-portal-dashboard.azurewebsites.net");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -18,20 +18,20 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/headspace_dev1', async (req, res) => {
+app.get('/data', async (req, res) => {
     // Import database node module
   
     // Database and container IDs
     //const databaseId = "ToDoList";
     //const containerId = "Items";
-    const databaseId = "DeviceData";
-    const containerId = "Telemetry";
+    const databaseId = "sql_osmose";
+    const containerId = "sql_or_collection";
     
     // Configure database access URI and primary key
     //const endpoint = "https://osmosesql.documents.azure.com:443/";
     //const authKey = "FCldEsKJ3sFWNkWT5qG2MwMRyp4eSAUFm3WpoQsv3qbByyLnvlcS140fUG6NYzpaPPQ2nH6BuDb0tlqsOupFcQ==";
-    const endpoint = "https://digital-cosmos-db.documents.azure.com:443/";
-    const authKey = "9vJaHL9tsBWiNE4yahqdK1VfCS6ZbLHj5DrQSr2rUKfAKFwhwSakyp6JxwtzpBjXUqeAirDFFl7AbPbtcj1KHQ==";
+    const endpoint = "https://osmosesql.documents.azure.com:443/";
+    const authKey = "FCldEsKJ3sFWNkWT5qG2MwMRyp4eSAUFm3WpoQsv3qbByyLnvlcS140fUG6NYzpaPPQ2nH6BuDb0tlqsOupFcQ==";
 
 
     // Instantiate the cosmos client, based on the endpoint and authorization key
@@ -54,7 +54,8 @@ app.get('/headspace_dev1', async (req, res) => {
        
 
         const queryResponse = await container.items.query(
-            "SELECT * FROM c WHERE c.customer = 'Headspace_Dev1'  ",
+            "SELECT * FROM c",
+          //"SELECT * FROM c WHERE c.customer = 'Headspace_Dev1'  ",
             { enableCrossPartitionQuery: true }
             ).toArray();
         //console.log(queryResponse.result);
