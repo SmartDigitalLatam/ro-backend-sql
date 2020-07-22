@@ -9,7 +9,7 @@ const CosmosClientInterface = require("@azure/cosmos").CosmosClient;
 const app = express()
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://ro-portal-dashboard.azurewebsites.net");
+  res.header("Access-Control-Allow-Origin", "https://ro-portal-dashboard-sql.azurewebsites.net");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -68,10 +68,5 @@ app.get('/data', async (req, res) => {
   });
  
 
-// Start the server, listen at port 3000 (-> http://127.0.0.1:3000/)
-// Also print a short info message to the console (visible in
-// the terminal window where you started the node server).
-
-//app.listen(3000, () => console.log('Example app listening on port 3000!'));
 
 module.exports = app;
